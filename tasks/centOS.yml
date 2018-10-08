@@ -1,0 +1,53 @@
+---
+
+- name: Add repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
+
+- name: install os packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ package_names }}"
+
+- name: Download nodered setup script
+  get_url:
+    url: https://rpm.nodesource.com/setup_8.x
+    dest: ~/
+    mode: 0755
+  register: nodejs
+
+- name: configure for nodejs installation
+  command: ~/setup_8.x
+  when: nodejs is defined and nodejs.changed
+
+- name: install nodejs os package
+  yum:
+    name: nodejs
+    state: installed
+
+- name: Install "node-red" node.js package. Takes a few minutes!
+  command: npm install -g --unsafe-perm node-red # does not work with npm module. Probably because of --unsave-perm
+  args:
+    creates: /bin/node-red
+
+- name: Install node-red-contrib-ttn node.js package. Takes a few minutes!
+  npm:
+    name: node-red-contrib-ttn
+    path: ~/.node-red
+  become: true
+  become_user: vagrant
+
+- name: install node-red service
+  copy:
+    src: 'nodered.service'
+    dest: '/etc/systemd/system/'
+
+- name: Make sure node-red is started and enabled to start on boot
+  systemd:
+    name: 'nodered'
+    state: 'started'
+    enabled: 'yes'
+
