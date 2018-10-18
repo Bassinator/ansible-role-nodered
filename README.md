@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/Bassinator/ansible-role-nodered.svg?branch=master)](https://travis-ci.com/Bassinator/ansible-role-nodered)
 
-Install tigerjython into user home directory
+setup nodered on centos
 
 ## Requirements
 
