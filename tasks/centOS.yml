@@ -36,9 +36,7 @@
 - name: Install node-red-contrib-ttn node.js package. Takes a few minutes!
   npm:
     name: node-red-contrib-ttn
-    path: ~/.node-red
-  become: true
-  become_user: vagrant
+    global: yes
 
 - name: install node-red service
   copy:
@@ -50,4 +48,3 @@
     name: 'nodered'
     state: 'started'
     enabled: 'yes'
-
