@@ -10,7 +10,9 @@
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: "{{ package_names }}"
+  with_items:
+    - git
+    - which
 
 - name: Download nodered setup script
   get_url:
