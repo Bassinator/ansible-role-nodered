@@ -38,15 +38,3 @@
 #   npm:
 #     name: node-red-contrib-ttn
 #   become: yes
-
-
-- name: install node-red service
-  copy:
-    src: 'nodered.service'
-    dest: '/etc/systemd/system/'
-
-- name: Make sure node-red is started and enabled to start on boot
-  systemd:
-    name: 'nodered'
-    state: 'started'
-    enabled: 'yes'
