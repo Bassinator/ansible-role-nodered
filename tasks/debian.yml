@@ -1,10 +1,8 @@
 ---
-- name: install os packages
+- name: install git
   apt:
-    name: "{{ item }}"
+    name: 'git'
     state: installed
-  with_items:
-    - git
 
 - name: Download nodered setup script
   get_url:
@@ -23,7 +21,7 @@
     state: installed
 
 - name: Install "node-red" node.js package. Takes a few minutes!
-  command: npm install -g --unsafe-perm node-red # does not work with npm module. Probably because of --unsave-perm
+  command: npm install -g --unsafe-perm node-red   # does not work with npm module. Probably because of --unsave-perm
   args:
     creates: /bin/node-red
 

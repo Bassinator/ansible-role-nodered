@@ -1,6 +1,5 @@
 ---
 
-# tasks/main.yml
 - include_tasks: centOS.yml
   when: ansible_os_family == "RedHat"
 
@@ -9,11 +8,8 @@
 
 - name: install node-red service
   copy:
-    src: 'nodered.service'
+    src: 'Node-RED.service'
     dest: '/etc/systemd/system/'
-
-- name: Make sure node-red is started and enabled to start on boot
-  systemd:
-    name: 'nodered'
-    state: 'started'
-    enabled: 'yes'
+  notify:
+    - 'daemon reload'
+    - 'service start'
