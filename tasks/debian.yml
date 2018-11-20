@@ -2,7 +2,7 @@
 - name: install git
   apt:
     name: 'git'
-    state: installed
+    state: present
 
 - name: Download nodered setup script
   get_url:
