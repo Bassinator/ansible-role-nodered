@@ -9,7 +9,7 @@
 - name: install os packages
   yum:
     name: ['git', 'which']
-    state: installed
+    state: present
 
 - name: Download nodered setup script
   get_url:
@@ -25,7 +25,7 @@
 - name: install nodejs os package
   yum:
     name: nodejs
-    state: installed
+    state: present
 
 - name: Install "node-red" node.js package. Takes a few minutes!
   command: npm install -g --unsafe-perm node-red  # does not work with npm module. Probably because of --unsave-perm
