@@ -21,7 +21,11 @@ before_script:
 
 script:
   # Run tests.
-  - molecule test
+  # - molecule test
+  - molecule converge
+  - molecule converge
+  
+  
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
