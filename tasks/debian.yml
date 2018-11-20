@@ -23,7 +23,7 @@
 - name: Install "node-red" node.js package. Takes a few minutes!
   command: npm install -g --unsafe-perm node-red   # does not work with npm module. Probably because of --unsave-perm
   args:
-    creates: /bin/node-red
+    creates: /usr/local/bin/node-red
 
 # needs ansible 2.8 actually not installed on my CI build
 # - name: Install "node-red" node.js package. Takes a few minutes!
