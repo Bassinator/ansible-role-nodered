@@ -1,13 +1,4 @@
 ---
-- name: get ansible version
-  command: ansible --version
-  register: ansibleversion
-  changed_when: false
-
-- debug:
-    var: ansibleversion
-  changed_when: false
-
 - include_tasks: centOS.yml
   when: ansible_os_family == "RedHat"
 
