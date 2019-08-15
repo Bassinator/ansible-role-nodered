@@ -16,11 +16,7 @@
     url: https://rpm.nodesource.com/setup_8.x
     dest: ~/
     mode: 0755
-  register: nodejs
-
-- name: configure for nodejs installation
-  command: ~/setup_8.x
-  when: nodejs is defined and nodejs.changed
+  notify: configure for nodejs installation
 
 - name: install nodejs os package
   yum:

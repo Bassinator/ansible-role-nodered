@@ -9,23 +9,20 @@
     url: https://deb.nodesource.com/setup_8.x
     dest: ~/
     mode: 0755
-  register: nodejs
-
-- name: configure for nodejs installation
-  command: ~/setup_8.x
-  when: nodejs is defined and nodejs.changed
+  notify: configure for nodejs installation
 
 - name: install nodejs os package
   yum:
     name: nodejs
     state: present
 
+
 - name: Install "node-red" node.js package. Takes a few minutes!
-  command: npm install -g --unsafe-perm node-red   # does not work with npm module. Probably because of --unsave-perm
+  command: npm install -g --unsafe-perm node-red  # does not work with npm module. Probably because of --unsave-perm
   async: 3600
   poll: 10
   args:
-    creates: /usr/bin/node-red
+    creates: /bin/node-red
 
 # needs ansible 2.8 actually not installed on my CI build
 # - name: Install "node-red" node.js package. Takes a few minutes!

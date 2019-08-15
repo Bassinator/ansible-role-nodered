@@ -1,4 +1,8 @@
 ---
+
+- name: configure for nodejs installation
+  command: ~/setup_8.x
+
 - name: daemon reload
   systemd:
     state: started
