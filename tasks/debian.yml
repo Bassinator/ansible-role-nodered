@@ -19,7 +19,7 @@
 
 - name: Install "node-red" node.js package. Takes a few minutes!
   command: npm install -g --unsafe-perm node-red  # does not work with npm module. Probably because of --unsave-perm
-  async: 3600
+  async: 300
   poll: 10
   args:
     creates: /bin/node-red
