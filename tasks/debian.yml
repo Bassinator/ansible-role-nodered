@@ -14,7 +14,7 @@
 - name: install nodejs os package
   yum:
     name: nodejs
-    state: present
+    state: latest
 
 
 - name: Install "node-red" node.js package. Takes a few minutes!
