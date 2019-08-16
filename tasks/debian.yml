@@ -6,10 +6,10 @@
 
 - name: Download nodered setup script
   get_url:
-    url: https://deb.nodesource.com/setup_8.x
+    url: https://deb.nodesource.com/setup_{{ node_version }}.x
     dest: ~/
     mode: 0755
-  notify: configure for nodejs installation
+  notify: prepare nodejs installation
 
 - name: install nodejs os package
   yum:

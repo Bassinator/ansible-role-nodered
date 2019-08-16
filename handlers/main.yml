@@ -1,7 +1,7 @@
 ---
 
-- name: configure for nodejs installation
-  command: ~/setup_8.x
+- name: prepare nodejs installation
+  command: '~/setup_{{ node_version }}.x'
 
 - name: daemon reload
   systemd:
