@@ -11,13 +11,6 @@
     name: ['git', 'which']
     state: present
 
-- name: Download nodered setup script
-  get_url:
-    url: https://rpm.nodesource.com/setup_8.x
-    dest: ~/
-    mode: 0755
-  notify: configure for nodejs installation
-
 - name: install nodejs os package
   yum:
     name: nodejs

@@ -1,21 +1,21 @@
 ---
 - name: install git
   apt:
-    name: 'git'
+    name:
+      - git
+      - curl
     state: present
 
-- name: Download nodered setup script
-  get_url:
-    url: https://deb.nodesource.com/setup_{{ node_version }}.x
-    dest: ~/
-    mode: 0755
-  notify: prepare nodejs installation
+- name: execute nodered setup script
+  shell: 'curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -'
+  args:
+    warn: false
+  changed_when: false
 
 - name: install nodejs os package
   yum:
     name:
       - nodejs
-      - npm
     state: present
 
 - name: Install "node-red" node.js package. Takes a few minutes!
