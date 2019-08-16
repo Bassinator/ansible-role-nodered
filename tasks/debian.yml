@@ -7,9 +7,12 @@
     state: present
 
 - name: execute nodered setup script
-  shell: 'curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -'
+  shell: >
+    set -o pipefail && \
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   args:
     warn: false
+    executable: /bin/bash
   changed_when: false
 
 - name: install nodejs os package
