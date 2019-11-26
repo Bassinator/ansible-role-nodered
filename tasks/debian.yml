@@ -11,7 +11,7 @@
       - git
       - nodejs
       - curl
-    state: installed
+    state: present
 
 - name: Download nodered setup script
   get_url:
