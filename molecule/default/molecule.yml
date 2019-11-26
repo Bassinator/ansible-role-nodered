@@ -7,7 +7,7 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian8}-ansible:latest"
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -17,6 +17,10 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+    options:
+      x:
+        - 503  # task when changed allowed no handler needed-
+        - 306  # ignore pipefail for pipes. Testing
 scenario:
   name: default
 verifier:

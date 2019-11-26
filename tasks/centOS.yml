@@ -8,38 +8,19 @@
 
 - name: install os packages
   yum:
-    name: ['git', 'which']
-    state: present
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - git
+    - nodejs
+    - which
+    - curl
 
 - name: Download nodered setup script
   get_url:
-    url: https://rpm.nodesource.com/setup_8.x
+    url: https://raw.githubusercontent.com/node-red/linux-installers/master/rpm/update-nodejs-and-nodered
     dest: ~/
     mode: 0755
-  register: nodejs
-
-- name: configure for nodejs installation
-  command: ~/setup_8.x
-  when: nodejs is defined and nodejs.changed
-
-- name: install nodejs os package
-  yum:
-    name: nodejs
-    state: present
-
-- name: Install "node-red" node.js package. Takes a few minutes!
-  command: npm install -g --unsafe-perm node-red  # does not work with npm module. Probably because of --unsave-perm
-  args:
-    creates: /bin/node-red
-
-# needs ansible 2.8 actually not installed on my CI build
-# - name: Install "node-red" node.js package. Takes a few minutes!
-#   npm:
-#     name: node-red
-#     unsafe_perm: true
-#     global: yes
-
-# - name: Install node-red-contrib-ttn node.js package. Takes a few minutes!
-#   npm:
-#     name: node-red-contrib-ttn
-#   become: yes
+  register: nodered
+  become: true
+  become_user: '{{ installation_os_user }}'

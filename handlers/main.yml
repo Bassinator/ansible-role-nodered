@@ -1,11 +1,4 @@
 ---
-- name: daemon reload
+- name: force systemd to reread configs
   systemd:
-    state: started
     daemon_reload: true
-    name: Node-RED
-- name: service start
-  service:
-    name: 'Node-RED'
-    state: 'started'
-    enabled: 'yes'
