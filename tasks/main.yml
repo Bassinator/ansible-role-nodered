@@ -16,6 +16,15 @@
     unsafe_perm: true
     global: true
 
+- name: configure to start node-red as root - needs do be changed for production use
+  lineinfile:
+    path: /lib/systemd/system/nodered.service
+    regexp: '^User='
+    line: User=root
+  notify:
+    - force systemd to reread configs
+    - start node-red and configure autostart at boot
+
 - name: Install node-red-contrib-ttn node.js package. Takes a few minutes!
   npm:
     name: node-red-contrib-ttn

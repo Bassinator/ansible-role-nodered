@@ -8,7 +8,7 @@ Documentation=http://nodered.org/docs/hardware/raspberrypi.html
 [Service]
 Type=simple
 # Run as root user - needs to be changed for production use
-User=root
+User=
 Group=root
 WorkingDirectory=/root
 Nice=5

@@ -8,13 +8,12 @@
 
 - name: install os packages
   yum:
-    name: "{{ item }}"
+    name:
+      - git
+      - nodejs
+      - which
+      - curl
     state: present
-  with_items:
-    - git
-    - nodejs
-    - which
-    - curl
 
 - name: Download nodered setup script
   get_url:
@@ -25,8 +24,9 @@
 
 - name: install node-red service
   copy:
-    src: 'Node-RED.service'
-    dest: '/etc/systemd/system/'
+    src: 'nodered.service'
+    dest: '/lib/systemd/system/nodered.service'
+    force: false
   notify:
     - force systemd to reread configs
     - start node-red and configure autostart at boot
