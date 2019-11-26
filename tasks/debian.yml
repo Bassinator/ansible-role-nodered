@@ -19,3 +19,12 @@
     dest: /tmp/
     mode: 0755
   register: nodered
+
+- name: configure to start node-red as root - needs do be changed for production use
+  lineinfile:
+    path: /lib/systemd/system/nodered.service
+    regexp: '^User='
+    line: User=root
+  notify:
+    - force systemd to reread configs
+    - start node-red and configure autostart at boot

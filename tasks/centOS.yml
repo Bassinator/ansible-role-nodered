@@ -22,3 +22,11 @@
     dest: /tmp/
     mode: 0755
   register: nodered
+
+- name: install node-red service
+  copy:
+    src: 'Node-RED.service'
+    dest: '/etc/systemd/system/'
+  notify:
+    - force systemd to reread configs
+    - start node-red and configure autostart at boot

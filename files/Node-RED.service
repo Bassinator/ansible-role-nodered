@@ -7,10 +7,10 @@ Documentation=http://nodered.org/docs/hardware/raspberrypi.html
 
 [Service]
 Type=simple
-# Run as normal vagrant user - feel free to change...
-User=vagrant
-Group=vagrant
-WorkingDirectory=/home/vagrant
+# Run as root user - needs to be changed for production use
+User=root
+Group=root
+WorkingDirectory=/root
 Nice=5
 # Environment="PI_NODE_OPTIONS=--max_old_space_size=256"
 # uncomment and edit next line if you need an http proxy
