@@ -19,8 +19,6 @@
 - name: Download nodered setup script
   get_url:
     url: https://raw.githubusercontent.com/node-red/linux-installers/master/rpm/update-nodejs-and-nodered
-    dest: ~/
+    dest: /tmp/
     mode: 0755
   register: nodered
-  become: true
-  become_user: '{{ installation_os_user }}'
