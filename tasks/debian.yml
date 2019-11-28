@@ -5,6 +5,7 @@
       - git
       - git
       - curl
+      - apt-transport-https
     state: present
 
 - name: install gpg key for nodesource repo
