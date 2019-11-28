@@ -27,8 +27,20 @@
   apt:
     name:
       - nodejs
-    update_cache: true
-    state: latest
+    state: present
+
+- name: Check is npm was installed as part of nodejs (does not with raspberryDesktop)
+  shell: command -v npm >/dev/null 2>&1
+  register: is_npm_exists
+  changed_when: false
+  ignore_errors: true
+
+- name: install npm
+  apt:
+    name:
+      - npm
+    state: present
+  when: not is_npm_exists
 
 # - name: Download nodered setup script
 #   get_url:
