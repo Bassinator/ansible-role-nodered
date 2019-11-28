@@ -6,15 +6,24 @@
 - include_tasks: debian.yml
   when: ansible_os_family == "Debian"
 
-- name: configure for nodejs installation
-  shell: 'yes | bash /tmp/update-nodejs-and-nodered'
-  when: nodered is defined and nodered.changed
+# - name: install node-red
+#   shell: 'yes | bash /tmp/update-nodejs-and-nodered'
+#   when: nodered is defined and nodered.changed
 
-- name: Install "node-red" node.js package. Takes a few minutes!
+- name: Install node-red
   npm:
     name: node-red
     unsafe_perm: true
     global: true
+
+- name: install node-red service
+  copy:
+    src: 'nodered.service'
+    dest: '/lib/systemd/system/nodered.service'
+    force: false
+  notify:
+    - force systemd to reread configs
+    - start node-red and configure autostart at boot
 
 - name: configure to start node-red as root - needs do be changed for production use
   lineinfile:

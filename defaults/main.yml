@@ -1,3 +1,4 @@
 ---
 installation_os_user: pi
 installation_os_group: pi
+nodejs_repo: node_12.x

@@ -11,6 +11,7 @@
     name:
       - git
       - nodejs
+      - npm
       - which
       - curl
     state: present
@@ -22,11 +23,11 @@
     mode: 0755
   register: nodered
 
-- name: install node-red service
-  copy:
-    src: 'nodered.service'
-    dest: '/lib/systemd/system/nodered.service'
-    force: false
-  notify:
-    - force systemd to reread configs
-    - start node-red and configure autostart at boot
+# - name: install node-red service
+#   copy:
+#     src: 'nodered.service'
+#     dest: '/lib/systemd/system/nodered.service'
+#     force: false
+#   notify:
+#     - force systemd to reread configs
+#     - start node-red and configure autostart at boot

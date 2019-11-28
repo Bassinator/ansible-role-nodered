@@ -1,21 +1,37 @@
 ---
+- name: install os packages
+  apt:
+    name:
+      - git
+      - git
+      - curl
+    state: present
+
+- name: install gpg key for nodesource repo
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: add nodesource repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/{{ nodejs_repo }} {{ ansible_distribution_release }} main'
+    state: present
+
 - name: uninstall eventually by os distribution installed nodered version
   apt:
     name:
       - nodered
     state: absent
 
-- name: install os packages
+- name: install nodejs
   apt:
     name:
-      - git
       - nodejs
-      - curl
     state: present
 
-- name: Download nodered setup script
-  get_url:
-    url: https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
-    dest: /tmp/
-    mode: 0755
-  register: nodered
+# - name: Download nodered setup script
+#   get_url:
+#     url: https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered
+#     dest: /tmp/
+#     mode: 0755
+#   register: nodered
