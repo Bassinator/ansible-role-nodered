@@ -30,8 +30,8 @@
     state: present
 
 - name: Check is npm was installed as part of nodejs (does not with raspberryDesktop)
-  shell: command -v npm >/dev/null 2>&1
-  register: is_npm_exists
+  shell: 'which npm'
+  register: npm_installed
   changed_when: false
   ignore_errors: true
 
@@ -40,7 +40,7 @@
     name:
       - npm
     state: present
-  when: not is_npm_exists
+  when: npm_installed.rc != 0
 
 # - name: Download nodered setup script
 #   get_url:
