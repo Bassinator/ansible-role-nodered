@@ -3,7 +3,6 @@
   apt:
     name:
       - git
-      - git
       - curl
       - apt-transport-https
     state: present
@@ -28,7 +27,8 @@
   apt:
     name:
       - nodejs
-    state: present
+    update_cache: true
+    state: latest
 
 # - name: Download nodered setup script
 #   get_url:
