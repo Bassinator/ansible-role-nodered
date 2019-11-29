@@ -1,10 +1,13 @@
 ---
 
-- include_tasks: centOS.yml
+- include_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
 
-- include_tasks: debian.yml
-  when: ansible_os_family == "Debian"
+- include_tasks: debian-stretch.yml
+  when: ansible_os_family == "Debian" and ansible_distribution_release == 'stretch'
+
+- include_tasks: debian-buster.yml
+  when: ansible_os_family == "Debian" and ansible_distribution_release == 'buster'
 
 - name: Install node-red
   npm:

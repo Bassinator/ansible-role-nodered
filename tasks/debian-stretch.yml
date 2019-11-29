@@ -1,0 +1,23 @@
+---
+- name: install os packages
+  apt:
+    name:
+      - git
+      - apt-transport-https
+    state: present
+
+- name: install gpg key for nodesource repo
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: add nodesource repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/{{ nodejs_repo }} {{ ansible_distribution_release }} main'
+    state: present
+
+- name: install nodejs
+  apt:
+    name:
+      - nodejs
+    state: present
