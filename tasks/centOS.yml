@@ -15,19 +15,3 @@
       - which
       - curl
     state: present
-
-- name: Download nodered setup script
-  get_url:
-    url: https://raw.githubusercontent.com/node-red/linux-installers/master/rpm/update-nodejs-and-nodered
-    dest: /tmp/
-    mode: 0755
-  register: nodered
-
-# - name: install node-red service
-#   copy:
-#     src: 'nodered.service'
-#     dest: '/lib/systemd/system/nodered.service'
-#     force: false
-#   notify:
-#     - force systemd to reread configs
-#     - start node-red and configure autostart at boot
