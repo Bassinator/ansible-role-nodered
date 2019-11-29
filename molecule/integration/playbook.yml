@@ -1,0 +1,21 @@
+---
+- name: simple Plabook to provision fresh raspberrypi
+  hosts: all
+  become: true
+  roles:
+#     - { role: bassinator.localisation, loc_timezone: Europe/Zurich, keyboard_layout: ch, keyboard_variant: de }
+    - { role: bassinator.nodered, tags: ["mqtt"] }
+#     - { role: bassinator.mosquitto, tags: ["mqtt"] }
+#     - { role: bassinator.simplehttp,  installation_os_user: pi, installation_os_group: pi, tags: ["mqtt", "webvr"] }
+#     - { role: bassinator.webvr,  installation_os_user: pi, installation_os_group: pi, tags: ["webvr"] }
+#     - { role: bassinator.scratch_mqtt,  installation_os_user: pi, installation_os_group: pi, tags: ["mqtt"] }
+#     - { role: bassinator.autoarchive, installation_os_user: pi, installation_os_group: pi, tags: ["scratch"] }
+#     - { role: bassinator.usbbackup, installation_os_user: pi, installation_os_group: pi, tags: ["backup"] }
+#     - { role: bassinator.tigerjython, installation_os_user: pi, installation_os_group: pi, tags: ["python"] }
+#   remote_user: pi
+#   become: yes
+# 
+#   post_tasks:
+#     - git:
+#         repo: https://github.com/Bassinator/learning_webvr.git
+#         dest: /home/pi/www/vr1
