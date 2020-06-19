@@ -10,6 +10,7 @@
   apt:
     name:
       - npm
+      - gnupg
     update_cache: yes
     state: present
 
