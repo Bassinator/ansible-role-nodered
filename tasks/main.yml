@@ -26,6 +26,16 @@
     unsafe_perm: true
     global: true
 
+- name: Install node-red-admin
+  npm:
+    name: node-red-admin
+    global: true
+
+- name: Install node-red-contrib-mongodb3
+  npm:
+    name: node-red-admin
+    global: true
+
 - name: install node-red service
   copy:
     src: 'nodered.service'

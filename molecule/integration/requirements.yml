@@ -1,9 +1,0 @@
-- src: bassinator.localisation
-- src: bassinator.mosquitto
-- src: bassinator.simplehttp
-- src: bassinator.webvr
-- src: bassinator.autoarchive
-- src: bassinator.usbbackup
-- src: bassinator.tigerjython
-- src: bassinator.scratch_mqtt
-- src: bassinator.nginx

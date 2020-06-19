@@ -1,7 +1,30 @@
 ---
+- name: remove nodered distribution packages
+  apt:
+    name:
+      - nodered
+      - node-red-update
+    state: absent
+
 - name: install npm and nodejs packages
   apt:
     name:
-      - nodejs
       - npm
+    update_cache: yes
     state: present
+
+
+- name: install gpg key for nodesource repo
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: add nodesource repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/{{ nodejs_repo }} {{ ansible_distribution_release }} main'
+    state: present
+
+- name: install nodejs
+  apt:
+    name:
+      - nodejs

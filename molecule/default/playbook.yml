@@ -2,13 +2,13 @@
 - name: Converge
   hosts: all
   pre_tasks:
-  - name: add user group
-    user:
-      name: '{{ installation_os_group }}'
-      state: present
-  - name: add user
-    user:
-      name: '{{ installation_os_user }}'
-      group: '{{ installation_os_group }}'
+#   - name: add user group
+#     user:
+#       name: '{{ installation_os_group }}'
+#       state: present
+#   - name: add user
+#     user:
+#       name: '{{ installation_os_user }}'
+#       group: '{{ installation_os_group }}'
   roles:
     - role: bassinator.nodered
